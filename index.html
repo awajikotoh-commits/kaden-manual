@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>家電取説ハブ</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Meiryo", sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      padding: 16px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      color: #1a56db;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    .category {
+      margin-bottom: 20px;
+    }
+    .category-title {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      padding-left: 4px;
+      border-left: 3px solid #1a56db;
+      padding-left: 8px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .card-info {
+      flex: 1;
+    }
+    .card-name {
+      font-size: 0.95rem;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+    .card-model {
+      font-size: 0.75rem;
+      color: #777;
+    }
+    .card-location {
+      font-size: 0.72rem;
+      color: #aaa;
+      margin-top: 2px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: bold;
+      text-decoration: none;
+      white-space: nowrap;
+      background: #1a56db;
+      color: #fff;
+    }
+    .btn:hover { background: #1447c0; }
+    .btn-sub {
+      background: #f0f4ff;
+      color: #1a56db;
+      border: 1px solid #c7d7fb;
+    }
+    .btn-sub:hover { background: #e0eaff; }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: flex-end;
+    }
+    .maintenance {
+      font-size: 0.72rem;
+      color: #e67e00;
+      margin-top: 3px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #bbb;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🏠 家電取説ハブ</h1>
+  <p class="subtitle">更新日：2026年5月9日</p>
+
+  <!-- エアコン -->
+  <div class="category">
+    <div class="category-title">エアコン（三菱電機）購入：2020年1月25日</div>
+
+    <div class="card">
+      <div class="card-info">
+        <div class="card-name">エアコン</div>
+        <div class="card-model">MSZ-E4019S-W（製番：90100407）</div>
+        <div class="card-location">📍 2階 子供部屋</div>
+      </div>
+      <div class="btn-group">
+        <a class="btn" href="https://www.mitsubishielectric.co.jp/home/kirigamine/support/" target="_blank">取説を探す</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-info">
+        <div class="card-name">エアコン</div>
+        <div class="card-model">MSZ-EX2819E7-W（製番：00105231）</div>
+        <div class="card-location">📍 2階 寝室</div>
+      </div>
+      <div class="btn-group">
+        <a class="btn" href="https://www.mitsubishielectric.co.jp/home/kirigamine/support/" target="_blank">取説を探す</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-info">
+        <div class="card-name">エアコン</div>
+        <div class="card-model">MSZ-EM8019E7S-W（製番：90100429）</div>
+        <div class="card-location">📍 1階 リビング</div>
+      </div>
+      <div class="btn-group">
+        <a class="btn" href="https://www.mitsubishielectric.co.jp/home/kirigamine/support/" target="_blank">取説を探す</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 洗濯機 -->
+  <div class="category">
+    <div class="category-title">洗濯機（Panasonic）</div>
+    <div class="card">
+      <div class="card-info">
+        <div class="card-name">ななめドラム洗濯乾燥機</div>
+        <div class="card-model">NA-VG740（Panasonic）</div>
+        <div class="card-maintenance maintenance">🔧 排水フィルター掃除：週1回（月曜日）</div>
+      </div>
+      <div class="btn-group">
+        <a class="btn" href="https://panasonic.jp/content/dam/panasonic/jp/ja/pim-assets/support/manual/000/000/000/351/807/000000000351807/na_vg740.pdf" target="_blank">📄 取説PDF</a>
+        <a class="btn btn-sub" href="https://panasonic.jp/wash/c-db/products/NA-VG740L/support.html" target="_blank">サポート</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 電子レンジ -->
+  <div class="category">
+    <div class="category-title">電子レンジ（日立）</div>
+    <div class="card">
+      <div class="card-info">
+        <div class="card-name">過熱水蒸気オーブンレンジ</div>
+        <div class="card-model">MRO-NS8（HITACHI）</div>
+        <div class="card-maintenance maintenance">🔧 重量センサー0点調節：月1回（毎月1日）</div>
+      </div>
+      <div class="btn-group">
+        <a class="btn" href="https://kadenfan.hitachi.co.jp/support/range/item/docs/mro-ns8_M_b.pdf" target="_blank">📄 取説PDF</a>
+        <a class="btn btn-sub" href="https://kadenfan.hitachi.co.jp/support/range/item/MRO-NS8/manual.html" target="_blank">サポート</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- エコキュート -->
+  <div class="category">
+    <div class="category-title">エコキュート（Panasonic）設置：2020年3月</div>
+    <div class="card">
+      <div class="card-info">
+        <div class="card-name">エコキュート フルオート 460L</div>
+        <div class="card-model">HE-NS46JQS（製番：5272354949）</div>
+        <div class="card-maintenance maintenance">🔧 浴槽フィルター掃除：月1回（1日）｜タンク水抜き：4月・10月｜業者点検：次回2030年4月</div>
+      </div>
+      <div class="btn-group">
+        <a class="btn" href="https://sumai.panasonic.jp/hp/8manual/" target="_blank">取説を探す</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 浄水器 -->
+  <div class="category">
+    <div class="category-title">浄水器（クリンスイ）</div>
+    <div class="card">
+      <div class="card-info">
+        <div class="card-name">浄水器内蔵水栓</div>
+        <div class="card-model">F426-HT（クリンスイ）　カートリッジ：BSC05003</div>
+        <div class="card-maintenance maintenance">🔧 カートリッジ交換：4ヶ月ごと（3月・7月・11月）　直近：2026年3月</div>
+      </div>
+      <div class="btn-group">
+        <a class="btn" href="https://cleansui.com/cms_cleansui/wp-content/uploads/2023/05/1a735e55e403a5cc0855f368c5b78483.pdf" target="_blank">📄 取説PDF</a>
+        <a class="btn btn-sub" href="https://cleansui.com/user-manual" target="_blank">サポート</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">このページをブックマークしておくといつでも取説にアクセスできます</div>
+
+</body>
+</html>
