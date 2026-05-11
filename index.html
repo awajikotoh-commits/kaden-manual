@@ -42,9 +42,8 @@
     .step { margin-bottom: 8px; padding-left: 4px; }
     .note { background: #fff8e1; border-left: 3px solid #f6a800; padding: 7px 10px; border-radius: 4px; font-size: 0.78rem; margin: 8px 0; }
     .warn { background: #fff0f0; border-left: 3px solid #e74c3c; padding: 7px 10px; border-radius: 4px; font-size: 0.78rem; margin: 8px 0; }
-    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin: 12px 0 4px; background: #000; }
-    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .video-label { font-size: 0.7rem; color: #999; margin-bottom: 10px; }
+    .manual-img { width: 100%; border-radius: 8px; margin: 10px 0 4px; display: block; border: 1px solid #e8e8e8; }
+    .img-label { font-size: 0.7rem; color: #999; margin-bottom: 10px; }
     .footer { text-align: center; font-size: 0.68rem; color: #ccc; margin-top: 20px; }
   </style>
 </head>
@@ -71,10 +70,8 @@
     <details>
       <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/0IcSEjyFVE4" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <p class="video-label">📹 三菱電機公式｜霧ヶ峰 フィルター掃除（GEシリーズ）</p>
+        <img class="manual-img" src="images/aircon_web.jpg" alt="エアコン フィルター取外し手順（三菱電機取扱説明書より）">
+        <p class="img-label">📄 三菱電機取扱説明書より（部品の取外し・取付け）</p>
         <p style="margin-bottom:8px"><strong>【全台共通 手順】</strong></p>
         <div class="step">① リモコンで電源を切る</div>
         <div class="step">② 前面パネルを上に引き上げて開ける</div>
@@ -108,10 +105,8 @@
     <details>
       <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/l5l_B9tXHhk" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <p class="video-label">📹 パナソニック公式｜ドラム式 排水フィルター・乾燥フィルターのお手入れ</p>
+        <img class="manual-img" src="images/washer_web.jpg" alt="洗濯機 排水フィルター掃除手順（パナソニック取扱説明書より）">
+        <p class="img-label">📄 パナソニック取扱説明書より（NA-VG740）</p>
         <div class="note">📌 タオルを1枚用意してから始める</div>
         <div class="step">① 「脱水」運転をする（ドラム内の水を抜くため）</div>
         <div class="step">② 電源を入れ、フィルターカバーの「つまみ先端部」を「●」までゆっくり回す</div>
@@ -143,6 +138,8 @@
     <details>
       <summary>お手入れ手順を見る</summary>
       <div class="steps">
+        <img class="manual-img" src="images/microwave_web.jpg" alt="電子レンジ 重量センサー0点調節手順（日立取扱説明書より）">
+        <p class="img-label">📄 日立取扱説明書より（MRO-NS8）</p>
         <div class="note">📌 レンジが冷えた状態で行う</div>
         <div class="step">① テーブルプレートをセットしてドアを閉める（食品は何も入れない）<br>→ 表示部に「0」が出ることを確認</div>
         <div class="step">② ドアを閉めたまま「スタート」ボタンを<strong>3秒以上長押し</strong></div>
@@ -171,10 +168,8 @@
     <details open>
       <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/uyeYm-4uyeI" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <p class="video-label">📹 パナソニック公式｜エコキュートのお手入れ</p>
+        <img class="manual-img" src="images/ecocute_filter_web.jpg" alt="エコキュート 浴槽フィルター掃除手順（パナソニック取扱説明書より）">
+        <p class="img-label">📄 パナソニック取扱説明書より（HE-NS46JQS）</p>
         <div class="step">① 浴槽側面の循環アダプターカバーを<strong>爪を押しながら引っ張って</strong>取り外す</div>
         <div class="step">② 内側のフィルターを引き出す（回しながら引き出す機種もあり）</div>
         <div class="step">③ シャワーや水道水でゴミ・湯垢を洗い流す</div>
@@ -197,10 +192,8 @@
     <details>
       <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/eLSwmFpWs5s" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <p class="video-label">📹 パナソニック公式｜エコキュート水抜きの手順（2020年モデル以降）</p>
+        <img class="manual-img" src="images/ecocute_tank_web.jpg" alt="エコキュート タンク水抜き手順（パナソニック取扱説明書より）">
+        <p class="img-label">📄 パナソニック取扱説明書より（HE-NS46JQS）</p>
         <div class="step">① お風呂の残り湯を先に使い切る</div>
         <div class="step">② 屋外タンク下部の「排水栓」をコインで<strong>左に回して</strong>開ける</div>
         <div class="step">③ 2〜3分そのまま流す</div>
@@ -229,10 +222,8 @@
     <details>
       <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/ggbLA09MsAM" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <p class="video-label">📹 クリンスイ公式｜スパウトイン（内蔵水栓）カートリッジ交換方法</p>
+        <img class="manual-img" src="images/cleansui_web.jpg" alt="クリンスイ カートリッジ交換手順（取扱説明書より）">
+        <p class="img-label">📄 クリンスイ取扱説明書より（F428BS、F426-HTも同様の手順）</p>
         <div class="step">① シンク下の扉を開ける</div>
         <div class="step">② カートリッジ本体のカバーを<strong>反時計回り</strong>に回して外す</div>
         <div class="step">③ 古いカートリッジをまっすぐ引き抜く</div>
