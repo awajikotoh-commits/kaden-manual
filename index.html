@@ -3,211 +3,252 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>家電取説ハブ</title>
+  <title>家電お手入れハブ</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Meiryo", sans-serif;
       background: #f4f6f9;
       color: #333;
-      padding: 16px;
+      padding: 12px;
+      font-size: 15px;
     }
-    h1 {
-      font-size: 1.4rem;
-      color: #1a56db;
-      margin-bottom: 4px;
-    }
-    .subtitle {
-      font-size: 0.8rem;
-      color: #888;
-      margin-bottom: 20px;
-    }
-    .category {
-      margin-bottom: 20px;
-    }
-    .category-title {
-      font-size: 0.75rem;
-      font-weight: bold;
-      color: #555;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-      padding-left: 4px;
-      border-left: 3px solid #1a56db;
-      padding-left: 8px;
+    h1 { font-size: 1.2rem; color: #1a56db; margin-bottom: 2px; }
+    .subtitle { font-size: 0.75rem; color: #999; margin-bottom: 16px; }
+    .section { margin-bottom: 18px; }
+    .section-title {
+      font-size: 0.7rem; font-weight: bold; color: #555;
+      border-left: 3px solid #1a56db; padding-left: 8px;
+      margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;
     }
     .card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-bottom: 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
+      background: #fff; border-radius: 10px;
+      margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      overflow: hidden;
     }
-    .card-info {
-      flex: 1;
+    .card-header {
+      padding: 12px 14px 10px;
+      display: flex; justify-content: space-between; align-items: flex-start;
     }
-    .card-name {
-      font-size: 0.95rem;
-      font-weight: bold;
-      margin-bottom: 2px;
-    }
-    .card-model {
-      font-size: 0.75rem;
-      color: #777;
-    }
-    .card-location {
-      font-size: 0.72rem;
-      color: #aaa;
-      margin-top: 2px;
-    }
+    .card-info { flex: 1; }
+    .card-name { font-size: 0.95rem; font-weight: bold; margin-bottom: 2px; }
+    .card-model { font-size: 0.72rem; color: #888; }
+    .card-location { font-size: 0.68rem; color: #bbb; margin-top: 2px; }
+    .card-freq { font-size: 0.7rem; color: #e67e00; margin-top: 3px; font-weight: bold; }
+    .btn-group { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; flex-shrink: 0; margin-left: 8px; }
     .btn {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: bold;
-      text-decoration: none;
+      display: inline-block; padding: 6px 11px; border-radius: 7px;
+      font-size: 0.75rem; font-weight: bold; text-decoration: none;
       white-space: nowrap;
-      background: #1a56db;
-      color: #fff;
     }
-    .btn:hover { background: #1447c0; }
-    .btn-sub {
-      background: #f0f4ff;
-      color: #1a56db;
-      border: 1px solid #c7d7fb;
+    .btn-primary { background: #1a56db; color: #fff; }
+    .btn-secondary { background: #f0f4ff; color: #1a56db; border: 1px solid #c7d7fb; }
+    details { border-top: 1px solid #f0f0f0; }
+    details summary {
+      padding: 9px 14px;
+      font-size: 0.8rem; font-weight: bold; color: #1a56db;
+      cursor: pointer; list-style: none; display: flex; align-items: center; gap: 6px;
+      background: #f8faff;
     }
-    .btn-sub:hover { background: #e0eaff; }
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      align-items: flex-end;
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: "▶"; font-size: 0.6rem; transition: transform 0.2s; }
+    details[open] summary::before { transform: rotate(90deg); }
+    .steps {
+      padding: 12px 14px 14px;
+      font-size: 0.82rem; line-height: 1.8;
+      background: #fff;
     }
-    .maintenance {
-      font-size: 0.72rem;
-      color: #e67e00;
-      margin-top: 3px;
+    .steps p { margin-bottom: 6px; }
+    .step { margin-bottom: 8px; padding-left: 4px; }
+    .note {
+      background: #fff8e1; border-left: 3px solid #f6a800;
+      padding: 7px 10px; border-radius: 4px;
+      font-size: 0.78rem; margin: 8px 0;
     }
-    .footer {
-      text-align: center;
-      font-size: 0.7rem;
-      color: #bbb;
-      margin-top: 24px;
+    .warn {
+      background: #fff0f0; border-left: 3px solid #e74c3c;
+      padding: 7px 10px; border-radius: 4px;
+      font-size: 0.78rem; margin: 8px 0;
     }
+    .footer { text-align: center; font-size: 0.68rem; color: #ccc; margin-top: 20px; }
   </style>
 </head>
 <body>
 
-  <h1>🏠 家電取説ハブ</h1>
-  <p class="subtitle">更新日：2026年5月9日</p>
+<h1>🏠 家電お手入れハブ</h1>
+<p class="subtitle">更新日：2026年5月11日</p>
 
-  <!-- エアコン -->
-  <div class="category">
-    <div class="category-title">エアコン（三菱電機）購入：2020年1月25日</div>
-
-    <div class="card">
+<!-- エアコン -->
+<div class="section">
+  <div class="section-title">エアコン（三菱電機）3台・購入2020年1月</div>
+  <div class="card">
+    <div class="card-header">
       <div class="card-info">
-        <div class="card-name">エアコン</div>
-        <div class="card-model">MSZ-E4019S-W（製番：90100407）</div>
-        <div class="card-location">📍 2階 子供部屋</div>
+        <div class="card-name">🌬️ エアコン 3台フィルター掃除</div>
+        <div class="card-model">MSZ-E4019S / MSZ-EX2819E7 / MSZ-EM8019E7S</div>
+        <div class="card-location">📍 子供部屋・寝室・リビング</div>
+        <div class="card-freq">🔧 5月・11月（年2回）</div>
       </div>
       <div class="btn-group">
-        <a class="btn" href="https://www.mitsubishielectric.co.jp/home/kirigamine/support/" target="_blank">取説を探す</a>
+        <a class="btn btn-primary" href="https://www.mitsubishielectric.co.jp/home/kirigamine/support/" target="_blank">取説を探す</a>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-info">
-        <div class="card-name">エアコン</div>
-        <div class="card-model">MSZ-EX2819E7-W（製番：00105231）</div>
-        <div class="card-location">📍 2階 寝室</div>
+    <details>
+      <summary>お手入れ手順を見る</summary>
+      <div class="steps">
+        <p><strong>【全台共通】</strong></p>
+        <div class="step">① リモコンで電源を切る</div>
+        <div class="step">② 前面パネルを上に引き上げて開ける</div>
+        <div class="step">③ フィルターを両端持って引き出す</div>
+        <div class="step">④ 掃除機でホコリを吸う（<strong>裏→表の順</strong>）</div>
+        <div class="step">⑤ 汚れがひどければ水洗い → 陰干し</div>
+        <div class="step">⑥ フィルターを戻してパネルを閉める</div>
+        <p style="margin-top:10px"><strong>【寝室・リビングのみ 追加作業】</strong><br>（MSZ-EX・MSZ-EM：自動お掃除機能付き）</p>
+        <div class="step">⑦ ダストボックスを引き出してゴミを捨てる</div>
+        <div class="step">⑧ リモコンの「お掃除リセット」を押す</div>
       </div>
-      <div class="btn-group">
-        <a class="btn" href="https://www.mitsubishielectric.co.jp/home/kirigamine/support/" target="_blank">取説を探す</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-info">
-        <div class="card-name">エアコン</div>
-        <div class="card-model">MSZ-EM8019E7S-W（製番：90100429）</div>
-        <div class="card-location">📍 1階 リビング</div>
-      </div>
-      <div class="btn-group">
-        <a class="btn" href="https://www.mitsubishielectric.co.jp/home/kirigamine/support/" target="_blank">取説を探す</a>
-      </div>
-    </div>
+    </details>
   </div>
+</div>
 
-  <!-- 洗濯機 -->
-  <div class="category">
-    <div class="category-title">洗濯機（Panasonic）</div>
-    <div class="card">
+<!-- 洗濯機 -->
+<div class="section">
+  <div class="section-title">洗濯機（Panasonic）</div>
+  <div class="card">
+    <div class="card-header">
       <div class="card-info">
-        <div class="card-name">ななめドラム洗濯乾燥機</div>
-        <div class="card-model">NA-VG740（Panasonic）</div>
-        <div class="card-maintenance maintenance">🔧 排水フィルター掃除：週1回（月曜日）</div>
+        <div class="card-name">🫧 排水フィルター掃除</div>
+        <div class="card-model">NA-VG740（ななめドラム）</div>
+        <div class="card-freq">🔧 毎月11日</div>
       </div>
       <div class="btn-group">
-        <a class="btn" href="https://panasonic.jp/content/dam/panasonic/jp/ja/pim-assets/support/manual/000/000/000/351/807/000000000351807/na_vg740.pdf" target="_blank">📄 取説PDF</a>
-        <a class="btn btn-sub" href="https://panasonic.jp/wash/c-db/products/NA-VG740L/support.html" target="_blank">サポート</a>
+        <a class="btn btn-primary" href="https://panasonic.jp/content/dam/panasonic/jp/ja/pim-assets/support/manual/000/000/000/351/807/000000000351807/na_vg740.pdf" target="_blank">📄 取説PDF</a>
+        <a class="btn btn-secondary" href="https://panasonic.jp/wash/c-db/products/NA-VG740L/support.html" target="_blank">サポート</a>
       </div>
     </div>
+    <details>
+      <summary>お手入れ手順を見る</summary>
+      <div class="steps">
+        <div class="note">📌 タオルを1枚用意してから始める</div>
+        <div class="step">① 「脱水」運転をする（ドラム内の水を抜くため）</div>
+        <div class="step">② 電源を入れ、フィルターカバーの「つまみ先端部」を「●」までゆっくり回す</div>
+        <div class="warn">⚠️ ブザーが鳴っても止めない！</div>
+        <div class="step">③ 水が出なくなったらフィルターを引き出す（タオルで水滴を拭きながら）</div>
+        <div class="step">④ ブラシでゴミを取る</div>
+        <div class="step">⑤ 取り付け時：「ウエ」を上にして差し込み、▶マークまでしっかり締める</div>
+        <div class="warn">⚠️ 締めが緩いと <strong>U18エラー</strong> になります<br>⚠️ ゴムパッキン2個がずれたら元の位置に戻す（水漏れ防止）</div>
+      </div>
+    </details>
   </div>
+</div>
 
-  <!-- 電子レンジ -->
-  <div class="category">
-    <div class="category-title">電子レンジ（日立）</div>
-    <div class="card">
+<!-- 電子レンジ -->
+<div class="section">
+  <div class="section-title">電子レンジ（日立）</div>
+  <div class="card">
+    <div class="card-header">
       <div class="card-info">
-        <div class="card-name">過熱水蒸気オーブンレンジ</div>
+        <div class="card-name">📡 重量センサー0点調節</div>
         <div class="card-model">MRO-NS8（HITACHI）</div>
-        <div class="card-maintenance maintenance">🔧 重量センサー0点調節：月1回（毎月1日）</div>
+        <div class="card-freq">🔧 毎月1日</div>
       </div>
       <div class="btn-group">
-        <a class="btn" href="https://kadenfan.hitachi.co.jp/support/range/item/docs/mro-ns8_M_b.pdf" target="_blank">📄 取説PDF</a>
-        <a class="btn btn-sub" href="https://kadenfan.hitachi.co.jp/support/range/item/MRO-NS8/manual.html" target="_blank">サポート</a>
+        <a class="btn btn-primary" href="https://kadenfan.hitachi.co.jp/support/range/item/docs/mro-ns8_M_b.pdf" target="_blank">📄 取説PDF</a>
+        <a class="btn btn-secondary" href="https://kadenfan.hitachi.co.jp/support/range/item/MRO-NS8/manual.html" target="_blank">サポート</a>
       </div>
     </div>
+    <details>
+      <summary>お手入れ手順を見る</summary>
+      <div class="steps">
+        <div class="note">📌 レンジが冷えた状態で行う</div>
+        <div class="step">① テーブルプレートをセットしてドアを閉める（食品は何も入れない）<br>→ 表示部に「0」が出ることを確認</div>
+        <div class="step">② ドアを閉めたまま「スタート」ボタンを<strong>3秒以上長押し</strong></div>
+        <div class="step">③ ピッとブザーが鳴り、庫内灯と「計量中」表示が点灯</div>
+        <div class="step">④ 数秒後に庫内灯が消えて「0」が表示されたら完了！</div>
+      </div>
+    </details>
   </div>
+</div>
 
-  <!-- エコキュート -->
-  <div class="category">
-    <div class="category-title">エコキュート（Panasonic）設置：2020年3月</div>
-    <div class="card">
+<!-- エコキュート -->
+<div class="section">
+  <div class="section-title">エコキュート（Panasonic）設置2020年3月</div>
+
+  <div class="card">
+    <div class="card-header">
       <div class="card-info">
-        <div class="card-name">エコキュート フルオート 460L</div>
-        <div class="card-model">HE-NS46JQS（製番：5272354949）</div>
-        <div class="card-maintenance maintenance">🔧 浴槽フィルター掃除：月1回（1日）｜タンク水抜き：4月・10月｜業者点検：次回2030年4月</div>
+        <div class="card-name">🛁 浴槽フィルター掃除</div>
+        <div class="card-model">HE-NS46JQS（フルオート460L）</div>
+        <div class="card-freq">🔧 毎月21日</div>
       </div>
       <div class="btn-group">
-        <a class="btn" href="https://sumai.panasonic.jp/hp/8manual/" target="_blank">取説を探す</a>
+        <a class="btn btn-primary" href="https://sumai.panasonic.jp/hp/8manual/" target="_blank">取説を探す</a>
       </div>
     </div>
+    <details open>
+      <summary>お手入れ手順を見る</summary>
+      <div class="steps">
+        <div class="step">① 浴槽側面の循環アダプターカバーを<strong>爪を押しながら引っ張って</strong>取り外す</div>
+        <div class="step">② 内側のフィルターを引き出す（回しながら引き出す機種もあり）</div>
+        <div class="step">③ シャワーや水道水でゴミ・湯垢を洗い流す</div>
+        <div class="step">④ 元通りはめ込んでカバーを取り付ける（<strong>カチッと音がするまで</strong>）</div>
+      </div>
+    </details>
   </div>
 
-  <!-- 浄水器 -->
-  <div class="category">
-    <div class="category-title">浄水器（クリンスイ）</div>
-    <div class="card">
+  <div class="card">
+    <div class="card-header">
       <div class="card-info">
-        <div class="card-name">浄水器内蔵水栓</div>
-        <div class="card-model">F426-HT（クリンスイ）　カートリッジ：BSC05003</div>
-        <div class="card-maintenance maintenance">🔧 カートリッジ交換：4ヶ月ごと（3月・7月・11月）　直近：2026年3月</div>
+        <div class="card-name">💧 タンク水抜き</div>
+        <div class="card-model">HE-NS46JQS</div>
+        <div class="card-freq">🔧 4月・10月（年2回）</div>
       </div>
       <div class="btn-group">
-        <a class="btn" href="https://cleansui.com/cms_cleansui/wp-content/uploads/2023/05/1a735e55e403a5cc0855f368c5b78483.pdf" target="_blank">📄 取説PDF</a>
-        <a class="btn btn-sub" href="https://cleansui.com/user-manual" target="_blank">サポート</a>
+        <a class="btn btn-primary" href="https://sumai.panasonic.jp/hp/8manual/" target="_blank">取説を探す</a>
       </div>
     </div>
+    <details>
+      <summary>お手入れ手順を見る</summary>
+      <div class="steps">
+        <div class="step">① お風呂の残り湯を先に使い切る</div>
+        <div class="step">② 屋外タンク下部の「排水栓」をコインで<strong>左に回して</strong>開ける</div>
+        <div class="step">③ 2〜3分そのまま流す</div>
+        <div class="note">📌 白・茶色の水が出ても正常です</div>
+        <div class="step">④ 水が透明になったら栓を閉める（しっかり締める・水漏れ注意）</div>
+      </div>
+    </details>
   </div>
+</div>
 
-  <div class="footer">このページをブックマークしておくといつでも取説にアクセスできます</div>
+<!-- 浄水器 -->
+<div class="section">
+  <div class="section-title">浄水器（クリンスイ）</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-info">
+        <div class="card-name">💧 カートリッジ交換</div>
+        <div class="card-model">F426-HT　交換品番：<strong>BSC05003</strong></div>
+        <div class="card-freq">🔧 3月・7月・11月（4ヶ月ごと）</div>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-primary" href="https://cleansui.com/cms_cleansui/wp-content/uploads/2023/05/1a735e55e403a5cc0855f368c5b78483.pdf" target="_blank">📄 取説PDF</a>
+        <a class="btn btn-secondary" href="https://cleansui.com/user-manual" target="_blank">サポート</a>
+      </div>
+    </div>
+    <details>
+      <summary>お手入れ手順を見る</summary>
+      <div class="steps">
+        <div class="step">① シンク下の扉を開ける</div>
+        <div class="step">② カートリッジ本体のカバーを<strong>反時計回り</strong>に回して外す</div>
+        <div class="step">③ 古いカートリッジをまっすぐ引き抜く</div>
+        <div class="step">④ 新しい <strong>BSC05003</strong> を奥までしっかり差し込む</div>
+        <div class="step">⑤ カバーを<strong>時計回り</strong>に締める（しっかり固定されるまで）</div>
+        <div class="step">⑥ 水を5〜10秒流してから使用</div>
+      </div>
+    </details>
+  </div>
+</div>
 
+<div class="footer">家電お手入れハブ — 2026年5月11日</div>
 </body>
 </html>
