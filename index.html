@@ -8,10 +8,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Meiryo", sans-serif;
-      background: #f4f6f9;
-      color: #333;
-      padding: 12px;
-      font-size: 15px;
+      background: #f4f6f9; color: #333; padding: 12px; font-size: 15px;
     }
     h1 { font-size: 1.2rem; color: #1a56db; margin-bottom: 2px; }
     .subtitle { font-size: 0.75rem; color: #999; margin-bottom: 16px; }
@@ -19,57 +16,35 @@
     .section-title {
       font-size: 0.7rem; font-weight: bold; color: #555;
       border-left: 3px solid #1a56db; padding-left: 8px;
-      margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 8px;
     }
-    .card {
-      background: #fff; border-radius: 10px;
-      margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      overflow: hidden;
-    }
-    .card-header {
-      padding: 12px 14px 10px;
-      display: flex; justify-content: space-between; align-items: flex-start;
-    }
+    .card { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); overflow: hidden; }
+    .card-header { padding: 12px 14px 10px; display: flex; justify-content: space-between; align-items: flex-start; }
     .card-info { flex: 1; }
     .card-name { font-size: 0.95rem; font-weight: bold; margin-bottom: 2px; }
     .card-model { font-size: 0.72rem; color: #888; }
     .card-location { font-size: 0.68rem; color: #bbb; margin-top: 2px; }
     .card-freq { font-size: 0.7rem; color: #e67e00; margin-top: 3px; font-weight: bold; }
     .btn-group { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; flex-shrink: 0; margin-left: 8px; }
-    .btn {
-      display: inline-block; padding: 6px 11px; border-radius: 7px;
-      font-size: 0.75rem; font-weight: bold; text-decoration: none;
-      white-space: nowrap;
-    }
+    .btn { display: inline-block; padding: 6px 11px; border-radius: 7px; font-size: 0.75rem; font-weight: bold; text-decoration: none; white-space: nowrap; }
     .btn-primary { background: #1a56db; color: #fff; }
     .btn-secondary { background: #f0f4ff; color: #1a56db; border: 1px solid #c7d7fb; }
     details { border-top: 1px solid #f0f0f0; }
     details summary {
-      padding: 9px 14px;
-      font-size: 0.8rem; font-weight: bold; color: #1a56db;
+      padding: 9px 14px; font-size: 0.8rem; font-weight: bold; color: #1a56db;
       cursor: pointer; list-style: none; display: flex; align-items: center; gap: 6px;
       background: #f8faff;
     }
     details summary::-webkit-details-marker { display: none; }
     details summary::before { content: "▶"; font-size: 0.6rem; transition: transform 0.2s; }
     details[open] summary::before { transform: rotate(90deg); }
-    .steps {
-      padding: 12px 14px 14px;
-      font-size: 0.82rem; line-height: 1.8;
-      background: #fff;
-    }
-    .steps p { margin-bottom: 6px; }
+    .steps { padding: 12px 14px 14px; font-size: 0.82rem; line-height: 1.8; background: #fff; }
     .step { margin-bottom: 8px; padding-left: 4px; }
-    .note {
-      background: #fff8e1; border-left: 3px solid #f6a800;
-      padding: 7px 10px; border-radius: 4px;
-      font-size: 0.78rem; margin: 8px 0;
-    }
-    .warn {
-      background: #fff0f0; border-left: 3px solid #e74c3c;
-      padding: 7px 10px; border-radius: 4px;
-      font-size: 0.78rem; margin: 8px 0;
-    }
+    .note { background: #fff8e1; border-left: 3px solid #f6a800; padding: 7px 10px; border-radius: 4px; font-size: 0.78rem; margin: 8px 0; }
+    .warn { background: #fff0f0; border-left: 3px solid #e74c3c; padding: 7px 10px; border-radius: 4px; font-size: 0.78rem; margin: 8px 0; }
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin: 12px 0 4px; background: #000; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .video-label { font-size: 0.7rem; color: #999; margin-bottom: 10px; }
     .footer { text-align: center; font-size: 0.68rem; color: #ccc; margin-top: 20px; }
   </style>
 </head>
@@ -78,7 +53,7 @@
 <h1>🏠 家電お手入れハブ</h1>
 <p class="subtitle">更新日：2026年5月11日</p>
 
-<!-- エアコン -->
+<!-- ===== エアコン ===== -->
 <div class="section">
   <div class="section-title">エアコン（三菱電機）3台・購入2020年1月</div>
   <div class="card">
@@ -94,16 +69,20 @@
       </div>
     </div>
     <details>
-      <summary>お手入れ手順を見る</summary>
+      <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
-        <p><strong>【全台共通】</strong></p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/0IcSEjyFVE4" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p class="video-label">📹 三菱電機公式｜霧ヶ峰 フィルター掃除（GEシリーズ）</p>
+        <p style="margin-bottom:8px"><strong>【全台共通 手順】</strong></p>
         <div class="step">① リモコンで電源を切る</div>
         <div class="step">② 前面パネルを上に引き上げて開ける</div>
         <div class="step">③ フィルターを両端持って引き出す</div>
         <div class="step">④ 掃除機でホコリを吸う（<strong>裏→表の順</strong>）</div>
         <div class="step">⑤ 汚れがひどければ水洗い → 陰干し</div>
         <div class="step">⑥ フィルターを戻してパネルを閉める</div>
-        <p style="margin-top:10px"><strong>【寝室・リビングのみ 追加作業】</strong><br>（MSZ-EX・MSZ-EM：自動お掃除機能付き）</p>
+        <p style="margin:10px 0 6px"><strong>【寝室・リビングのみ 追加作業】</strong><br>（MSZ-EX・MSZ-EM：自動お掃除機能付き）</p>
         <div class="step">⑦ ダストボックスを引き出してゴミを捨てる</div>
         <div class="step">⑧ リモコンの「お掃除リセット」を押す</div>
       </div>
@@ -111,7 +90,7 @@
   </div>
 </div>
 
-<!-- 洗濯機 -->
+<!-- ===== 洗濯機 ===== -->
 <div class="section">
   <div class="section-title">洗濯機（Panasonic）</div>
   <div class="card">
@@ -127,8 +106,12 @@
       </div>
     </div>
     <details>
-      <summary>お手入れ手順を見る</summary>
+      <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/l5l_B9tXHhk" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p class="video-label">📹 パナソニック公式｜ドラム式 排水フィルター・乾燥フィルターのお手入れ</p>
         <div class="note">📌 タオルを1枚用意してから始める</div>
         <div class="step">① 「脱水」運転をする（ドラム内の水を抜くため）</div>
         <div class="step">② 電源を入れ、フィルターカバーの「つまみ先端部」を「●」までゆっくり回す</div>
@@ -142,7 +125,7 @@
   </div>
 </div>
 
-<!-- 電子レンジ -->
+<!-- ===== 電子レンジ ===== -->
 <div class="section">
   <div class="section-title">電子レンジ（日立）</div>
   <div class="card">
@@ -170,7 +153,7 @@
   </div>
 </div>
 
-<!-- エコキュート -->
+<!-- ===== エコキュート ===== -->
 <div class="section">
   <div class="section-title">エコキュート（Panasonic）設置2020年3月</div>
 
@@ -186,8 +169,12 @@
       </div>
     </div>
     <details open>
-      <summary>お手入れ手順を見る</summary>
+      <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/uyeYm-4uyeI" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p class="video-label">📹 パナソニック公式｜エコキュートのお手入れ</p>
         <div class="step">① 浴槽側面の循環アダプターカバーを<strong>爪を押しながら引っ張って</strong>取り外す</div>
         <div class="step">② 内側のフィルターを引き出す（回しながら引き出す機種もあり）</div>
         <div class="step">③ シャワーや水道水でゴミ・湯垢を洗い流す</div>
@@ -208,8 +195,12 @@
       </div>
     </div>
     <details>
-      <summary>お手入れ手順を見る</summary>
+      <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/eLSwmFpWs5s" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p class="video-label">📹 パナソニック公式｜エコキュート水抜きの手順（2020年モデル以降）</p>
         <div class="step">① お風呂の残り湯を先に使い切る</div>
         <div class="step">② 屋外タンク下部の「排水栓」をコインで<strong>左に回して</strong>開ける</div>
         <div class="step">③ 2〜3分そのまま流す</div>
@@ -220,7 +211,7 @@
   </div>
 </div>
 
-<!-- 浄水器 -->
+<!-- ===== 浄水器 ===== -->
 <div class="section">
   <div class="section-title">浄水器（クリンスイ）</div>
   <div class="card">
@@ -236,8 +227,12 @@
       </div>
     </div>
     <details>
-      <summary>お手入れ手順を見る</summary>
+      <summary>お手入れ手順・動画を見る</summary>
       <div class="steps">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/ggbLA09MsAM" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p class="video-label">📹 クリンスイ公式｜スパウトイン（内蔵水栓）カートリッジ交換方法</p>
         <div class="step">① シンク下の扉を開ける</div>
         <div class="step">② カートリッジ本体のカバーを<strong>反時計回り</strong>に回して外す</div>
         <div class="step">③ 古いカートリッジをまっすぐ引き抜く</div>
