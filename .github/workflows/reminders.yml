@@ -1,0 +1,138 @@
+name: 家電・生活リマインダー
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # 毎日 UTC 0:00 = JST 9:00
+  workflow_dispatch:        # GitHub UIから手動実行可
+
+jobs:
+  reminders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リマインダー送信
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          python3 - << 'PYEOF'
+          import urllib.request, json, os
+          from datetime import datetime, timezone, timedelta
+
+          JST = timezone(timedelta(hours=9))
+          now = datetime.now(JST)
+          m, d = now.month, now.day
+          topic = os.environ['NTFY_TOPIC']
+          sent = []
+
+          def notify(title, msg, tn, click='https://awajikotoh-commits.github.io/kaden-manual/', has_manual=True):
+              sc = lambda s: json.dumps({'topic': topic+'-log', 'message': s+': '+tn})
+              if has_manual:
+                  actions = [
+                      {'action':'view','label':'📖 取説を開く','url':'https://awajikotoh-commits.github.io/kaden-manual/'},
+                      {'action':'http','label':'✅ やった','url':'https://ntfy.sh','method':'POST','headers':{'Content-Type':'application/json'},'body':sc('完了')},
+                      {'action':'http','label':'🔄 やってない','url':'https://ntfy.sh','method':'POST','headers':{'Content-Type':'application/json'},'body':sc('やってない')},
+                  ]
+              else:
+                  actions = [
+                      {'action':'http','label':'✅ やった','url':'https://ntfy.sh','method':'POST','headers':{'Content-Type':'application/json'},'body':sc('完了')},
+                      {'action':'http','label':'🔄 やってない','url':'https://ntfy.sh','method':'POST','headers':{'Content-Type':'application/json'},'body':sc('やってない')},
+                      {'action':'http','label':'❌ やらない','url':'https://ntfy.sh','method':'POST','headers':{'Content-Type':'application/json'},'body':sc('やらない')},
+                  ]
+              data = json.dumps({
+                  'topic': topic, 'title': title, 'message': msg,
+                  'click': click, 'actions': actions,
+              }).encode('utf-8')
+              urllib.request.urlopen(urllib.request.Request(
+                  'https://ntfy.sh', data=data, headers={'Content-Type': 'application/json'}
+              ))
+              sent.append(title)
+
+          # ── 毎月1日 ── 電子レンジ 重量センサー0点調節
+          if d == 1:
+              notify(
+                  '📡 電子レンジ センサー0点調節（MRO-NS8）',
+                  '重量センサー0点調節（MRO-NS8）\n※レンジが冷えた状態で行う\n\n① テーブルプレートをセットして\n　ドアを閉める（食品は何も入れない）\n　→ 表示部に「0」が出ることを確認\n\n② ドアを閉めたまま\n　「スタート」ボタンを3秒以上長押し\n\n③ ピッとブザーが鳴り\n　庫内灯と「計量中」表示が点灯\n\n④ 数秒後に庫内灯が消えて\n　「0」が表示されたら完了！',
+                  '電子レンジセンサー調節'
+              )
+
+          # ── 毎月11日 ── 洗濯機 排水フィルター掃除
+          if d == 11:
+              notify(
+                  '🫧 洗濯機 排水フィルター掃除（NA-VG740）',
+                  '【準備】タオルを用意する\n\n① まず「脱水」運転をする\n　（ドラム内の水を抜くため）\n\n② 電源を入れ、フィルターカバーの\n　「つまみ先端部」を「●」まで\n　ゆっくり回す\n　※ブザーが鳴ったら止めない！\n\n③ 水が出なくなったら\n　フィルターを引き出す\n　（タオルで水滴を拭きながら）\n\n④ ブラシでゴミを取る\n\n⑤ 取り付け時：「ウエ」を上にして\n　差し込み、▶マークまでしっかり締める\n　（緩いとU18エラーになります）\n\n⚠️ ゴムパッキン2個がずれたら\n　必ず元の位置に戻す（水漏れ防止）',
+                  '洗濯機フィルター掃除'
+              )
+
+          # ── 毎月21日 ── エコキュート 浴槽フィルター掃除
+          if d == 21:
+              notify(
+                  '🛁 エコキュート 浴槽フィルター掃除',
+                  '浴槽の側面にある循環アダプターのフィルター掃除です\n\n① 浴槽側面の循環アダプターカバーを\n　爪を押しながら引っ張って取り外す\n\n② 内側のフィルターを引き出す\n　（回しながら引き出す機種もあり）\n\n③ シャワーや水道水で\n　ゴミ・湯垢を洗い流す\n\n④ 元通りはめ込んでカバーを取り付ける\n　（カチッと音がするまで）',
+                  'エコキュート浴槽フィルター掃除'
+              )
+
+          # ── 5月・11月1日 ── エアコン フィルター掃除
+          if d == 1 and m in (5, 11):
+              notify(
+                  '🌬️ エアコン フィルター掃除（冷房前・3台）' if m == 5 else '🌬️ エアコン フィルター掃除（暖房前・3台）',
+                  '冷房シーズン前 エアコン3台フィルター掃除\n\n【全台共通 ①〜⑥】\n① リモコンで電源を切る\n② 前面パネルを上に引き上げて開ける\n③ フィルターを両端持って引き出す\n④ 掃除機でホコリを吸う（裏→表の順）\n⑤ 汚れがひどければ水洗い→陰干し\n⑥ フィルターを戻してパネルを閉める\n\n【寝室・リビングのみ 追加作業】\n（MSZ-EX・MSZ-EM：自動お掃除機能付き）\n⑦ ダストボックスを引き出してゴミを捨てる\n⑧ リモコンの「お掃除リセット」を押す\n\n📍 対象3台：\n・リビング（MSZ-EM8019E7S-W）\n・2階寝室（MSZ-EX2819E7-W）\n・2階子供部屋（MSZ-E4019S-W）',
+                  'エアコンフィルター掃除'
+              )
+
+          # ── 4月・10月21日 ── エコキュート タンク水抜き
+          if d == 21 and m in (4, 10):
+              notify(
+                  '💧 エコキュート タンク水抜き（HE-NS46JQS）',
+                  '① お風呂の残り湯を先に使い切る\n\n② 屋外タンク下部の「排水栓」を\n　コインで左に回して開ける\n\n③ 2〜3分そのまま流す\n　（白・茶色の水が出ても正常）\n\n④ 水が透明になったら栓を閉める\n　（しっかり締める・水漏れ注意）',
+                  'エコキュートタンク水抜き'
+              )
+
+          # ── 3月・7月・11月11日 ── クリンスイ カートリッジ交換
+          if d == 11 and m in (3, 7, 11):
+              notify(
+                  '💧 クリンスイ カートリッジ交換（F426-HT）',
+                  'クリンスイ F426-HT カートリッジ交換\n交換品番：BSC05003\n\n① シンク下の扉を開ける\n\n② カートリッジ本体の\n　カバーを反時計回りに回して外す\n\n③ 古いカートリッジを\n　まっすぐ引き抜く\n\n④ 新しいBSC05003を\n　奥までしっかり差し込む\n\n⑤ カバーを時計回りに締める\n　（しっかり固定されるまで）\n\n⑥ 水を5〜10秒流してから使用',
+                  'クリンスイカートリッジ交換'
+              )
+
+          # ── 3月・9月1日 ── 自転車 虫ゴム交換
+          if d == 1 and m in (3, 9):
+              notify(
+                  '🚲 子ども自転車 虫ゴム交換',
+                  '子ども自転車の虫ゴム交換（英式バルブ）\n【必要なもの】虫ゴム（100均で購入可）\n\n① バルブキャップを外す\n② バルブ先端の小さいナットを\n　指で反時計回りに回して外す\n③ バルブ口金（金属ピン）を\n　まっすぐ引き抜く\n④ 口金の先端にある虫ゴムを確認\n　ひびや切れがあれば交換\n　→ 新しい虫ゴムを奥までかぶせる\n⑤ 口金をバルブに戻し\n　ナットを指で締める\n⑥ 空気を入れて\n　翌日も空気が抜けていないか確認',
+                  '自転車虫ゴム交換',
+                  click='https://www.cb-asahi.co.jp/contents/category/maintenance/tire_air-english/',
+                  has_manual=False
+              )
+
+          # ── 6月・12月11日 ── 汚水枡 ヘドロ掃除
+          if d == 11 and m in (6, 12):
+              notify(
+                  '🪣 汚水枡 ヘドロ掃除',
+                  '汚水枡のヘドロ掃除\n\n【準備】ゴム手袋・バケツ・ほうき・ホース\n\n① 庭の汚水枡の蓋をバールや\n　マイナスドライバーで開ける\n② 枡の底に溜まったヘドロを\n　柄の長いブラシや棒でかき出す\n③ バケツにすくって袋へ\n　（可燃ごみとして処分）\n④ ホースで水を流しながら\n　枡の内側をブラシで洗う\n⑤ 蓋を元に戻す\n\n⚠️ 作業後は手洗い・消毒をしっかり',
+                  '汚水掃除',
+                  has_manual=False
+              )
+
+          # ── 6月1日 ── オイル交換（オイルのみ）
+          if d == 1 and m == 6:
+              notify(
+                  '🛢️ オイル交換（オイルのみ）',
+                  'エルグランド・タント オイル交換\n今回：オイルのみ交換（エレメントは次回）\n\n【エルグランド (E51)】\nエンジンオイル：5W-30推奨\n交換量：約4.2L\n\n【タント (LA600S)】\nエンジンオイル：0W-20推奨\n交換量：約2.8L\n\n→ ガソリンスタンドまたはカーショップで\n　「オイル交換のみ」と伝える',
+                  'オイル交換',
+                  has_manual=False
+              )
+
+          # ── 12月1日 ── オイル交換（オイル＋エレメント）
+          if d == 1 and m == 12:
+              notify(
+                  '🛢️ オイル交換（オイル＋エレメント）',
+                  'エルグランド・タント オイル交換\n今回：オイル＋エレメント（フィルター）両方交換\n\n【エルグランド (E51)】\nエンジンオイル：5W-30推奨\n交換量：約4.5L（エレメント交換時）\n\n【タント (LA600S)】\nエンジンオイル：0W-20推奨\n交換量：約3.0L（エレメント交換時）\n\n→ ガソリンスタンドまたはカーショップで\n　「オイルとエレメント両方交換」と伝える',
+                  'オイル交換',
+                  has_manual=False
+              )
+
+          if sent:
+              print('送信完了:', ', '.join(sent))
+          else:
+              print(f'本日({m}/{d})は送信対象なし')
+          PYEOF
