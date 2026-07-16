@@ -1,5 +1,8 @@
 name: 家電・生活リマインダー
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '0 0 * * *'   # 毎日 UTC 0:00 = JST 9:00
@@ -154,3 +157,16 @@ jobs:
           else:
               print(f'本日({m}/{d})は送信対象なし')
           PYEOF
+
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: 活動記録を更新（60日で無効化されないように）
+        run: |
+          mkdir -p .github
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .github/last-run.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/last-run.txt
+          git diff --staged --quiet || git commit -m "chore: keep workflow active"
+          git push
